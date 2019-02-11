@@ -13,8 +13,8 @@ public class AesUtil {
     private static final String AES_NAME = "AES";
     private static final String AES_MODEL = "AES/CBC/PKCS5Padding";
 
-    private static byte[] key = {'c', 'o', 'm', 1, 2, 3, 'g', 'm', 'c', 'c', 8, 9, 10, 'w', 'z', 'q'};
-    private static byte[] iv = {1, 2, 3, 4, 5, 11, 12, 13, 14, 15, 6, 7, 8, 9, 10, 0};
+    private static byte[] key = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private static byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
     /**
      * byte加密
