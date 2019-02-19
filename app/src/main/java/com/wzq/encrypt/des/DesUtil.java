@@ -14,7 +14,7 @@ import javax.crypto.spec.SecretKeySpec;
  * <p>
  * ECB：电子密本方式
  * 优点：简单，有利于并行计算
- * 缺点：不能隐藏明文的模式，容易被攻击，不安全
+ * 缺点：不能隐藏明文的模式，容易被攻击，不安全，不建议使用
  * <p>
  * <p>
  * CBC：密码分组链接
@@ -22,7 +22,8 @@ import javax.crypto.spec.SecretKeySpec;
  * 缺点：不利于并行计算，误差传递
  * <p>
  * <p>
- * 2.DESEDE加密，三倍长的Des加密
+ * 2.DESEDE加密，DESede是由DES对称加密算法改进后的一种对称加密算法。使用 168 位的密钥对资料进行三次加密的一种机制；
+ * 它通常（但非始终）提供极其强大的安全性。
  */
 public class DesUtil {
     private static final String DES_BASE = "DES";
@@ -32,15 +33,17 @@ public class DesUtil {
 
     private static final String DESEDE_BASE = "DESede";
 
-    //
-    public static final byte DEFAULT_KEY[] = {1, 2, 3, 4, 5, 6, 7,8};
-    public static final byte DEFAULT_IV[] = {8, 7, 6, 5, 1, 2, 3};
+    // 秘钥至少是8字节
+    public static final byte DEFAULT_KEY[] = {1, 2, 3, 4, 5, 6, 7, 8};
+
+    // cbc向量必须是8字节
+    public static final byte DEFAULT_IV[] = {8, 7, 6, 5, 1, 2, 3, 4};
 
     // ede秘钥必须是16或24字节
     public static final byte DEFAULT_KEY_EDE[] = {1, 2, 3, 4, 5, 6, 7, 8, 8, 7, 6, 5, 4, 3, 2, 1, 1, 2, 3, 4, 5, 6, 7, 8};
 
     /**
-     * ECB加解密
+     * ECB
      *
      * @param data 源数据
      * @param key  秘钥
@@ -64,7 +67,7 @@ public class DesUtil {
     }
 
     /**
-     * CBC加解密
+     * CBC
      *
      * @param data 源数据
      * @param key  秘钥
@@ -89,7 +92,15 @@ public class DesUtil {
         return null;
     }
 
-    // desede加密方法
+    /**
+     * Desede
+     *
+     * @param data 源数据
+     * @param key  秘钥
+     * @param mode 加密：Cipher.ENCRYPT_MODE
+     *             解密：Cipher.DECRYPT_MODE
+     * @return 加解密后的byte数组
+     */
     public static byte[] ede(byte[] data, byte[] key, int mode) {
         try {
             SecretKey secretKey = new SecretKeySpec(key, DESEDE_BASE);
