@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.wzq.encrypt.ui.AesFragment;
 import com.wzq.encrypt.ui.DesFragment;
 import com.wzq.encrypt.ui.MD5Fragment;
+import com.wzq.encrypt.ui.RsaFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,11 +35,13 @@ public class MainActivity extends AppCompatActivity {
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new DesFragment());
         fragmentList.add(new AesFragment());
+        fragmentList.add(new RsaFragment());
         fragmentList.add(new MD5Fragment());
 
         List<String> titleList = new ArrayList<>();
         titleList.add("DES");
         titleList.add("AES");
+        titleList.add("RSA");
         titleList.add("MD5");
 
         MyPagerAdapter myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager(), fragmentList, titleList);
