@@ -9,10 +9,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
-import com.wzq.encrypt.ui.AesFragment;
-import com.wzq.encrypt.ui.DesFragment;
-import com.wzq.encrypt.ui.MD5Fragment;
-import com.wzq.encrypt.ui.RsaFragment;
+import com.wzq.encrypt.test.ui.AesFragment;
+import com.wzq.encrypt.test.ui.DesFragment;
+import com.wzq.encrypt.test.ui.MD5Fragment;
+import com.wzq.encrypt.test.ui.RsaFragment;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.wzq.encrypt.ui;
+package com.wzq.encrypt.test.ui;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

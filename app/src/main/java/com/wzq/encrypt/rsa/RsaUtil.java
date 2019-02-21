@@ -37,7 +37,9 @@ public class RsaUtil {
     }
 
     /**
-     * 加解密
+     * 单次加密的源数据最大长度不能超过key的长度
+     * 比如key的长度是2048位，也就是256字节，src的长度也不能超过256字节
+     * 参考下面的分段加密方法
      *
      * @param src  源数据
      * @param key  公钥或者私钥
@@ -56,6 +58,29 @@ public class RsaUtil {
         }
 
         return result;
+    }
+
+    /**
+     * todo 根据keyLength分段处理
+     */
+    public static byte[] processSection(byte[] src, Key key, int keyLength, int mode) {
+        int singleLength = keyLength / 8;
+
+        try {
+            if (src.length <= singleLength) {
+                return process(src, key, mode);
+            }
+
+            int count = src.length / singleLength;
+            for (int i = 0; i < count; i++) {
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     /**
