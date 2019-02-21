@@ -37,7 +37,14 @@ public class RsaFragment extends Fragment {
 
         btn1.setOnClickListener(v -> {
             KeyPair keyPair = RsaUtil.generateKeyPair(2048);
+            String priKeyStr = Base64.encodeToString(keyPair.getPrivate().getEncoded(), Base64.DEFAULT);
+            String pubKeyStr = Base64.encodeToString(keyPair.getPublic().getEncoded(), Base64.DEFAULT);
+            Log.i(TAG, priKeyStr);
+            Log.i(TAG, pubKeyStr);
 
+            KeyPair newKeyPair = new KeyPair(RsaUtil.key2PublicKey(pubKeyStr), RsaUtil.key2PrivateKey(priKeyStr));
+            Log.i(TAG, newKeyPair.getPrivate().toString());
+            Log.i(TAG, newKeyPair.getPublic().toString());
         });
         btn2.setOnClickListener(v -> {
             KeyPair keyPair = RsaUtil.generateKeyPair(2048);

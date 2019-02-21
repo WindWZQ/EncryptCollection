@@ -66,9 +66,9 @@ public class RsaUtil {
      */
     public static PublicKey key2PublicKey(String publicKeyStr) {
         PublicKey publicKey = null;
-        byte[] keyBytes = Base64.decode(publicKeyStr, Base64.DEFAULT);
-        X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);
         try {
+            byte[] keyBytes = Base64.decode(publicKeyStr, Base64.DEFAULT);
+            X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);
             KeyFactory keyFactory = KeyFactory.getInstance(RSA_BASE);
             publicKey = keyFactory.generatePublic(keySpec);
         } catch (Exception e) {
@@ -86,9 +86,9 @@ public class RsaUtil {
      */
     public static PrivateKey key2PrivateKey(String privateKeyStr) {
         PrivateKey privateKey = null;
-        byte[] keyBytes = Base64.decode(privateKeyStr, Base64.DEFAULT);
-        PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
         try {
+            byte[] keyBytes = Base64.decode(privateKeyStr, Base64.DEFAULT);
+            PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
             KeyFactory keyFactory = KeyFactory.getInstance(RSA_BASE);
             privateKey = keyFactory.generatePrivate(keySpec);
         } catch (Exception e) {
