@@ -2,6 +2,7 @@ package com.wzq.encrypt.rsa;
 
 import android.util.Base64;
 
+import java.io.ByteArrayOutputStream;
 import java.security.Key;
 import java.security.KeyFactory;
 import java.security.KeyPair;
@@ -38,7 +39,7 @@ public class RsaUtil {
 
     /**
      * 单次加密的源数据最大长度不能超过key的长度
-     * 比如key的长度是2048位，也就是256字节，src的长度也不能超过256字节
+     * 比如key的长度是2048位，也就是256字节，src的长度也不能超过256-11=245字节
      * 参考下面的分段加密方法
      *
      * @param src  源数据
@@ -61,21 +62,37 @@ public class RsaUtil {
     }
 
     /**
-     * todo 根据keyLength分段处理
+     * 分段加密方法
+     * 长度是2048位，也就是256字节，src的长度也不能超过256-11=245字节，只有加密需要-11，解密不需要
+     *
+     * @param src       源数据
+     * @param key       公钥或者私钥
+     * @param keyLength 秘钥长度
+     * @param mode      加密：Cipher.ENCRYPT_MODE
+     *                  解密：Cipher.DECRYPT_MODE
+     * @return 加解密后的byte数组
      */
     public static byte[] processSection(byte[] src, Key key, int keyLength, int mode) {
-        int singleLength = keyLength / 8;
-
         try {
-            if (src.length <= singleLength) {
-                return process(src, key, mode);
-            }
+            Cipher cipher = Cipher.getInstance(RSA_MODULE);
+            cipher.init(mode, key);
 
-            int count = src.length / singleLength;
+            int singleLength = keyLength / 8;
+            if (mode == Cipher.ENCRYPT_MODE) {
+                singleLength -= 11;
+            }
+            int count = (int) Math.ceil((double) src.length / singleLength);
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
             for (int i = 0; i < count; i++) {
-
+                if (i == (count - 1)) {
+                    baos.write(cipher.doFinal(src, singleLength * i, src.length - singleLength * i));
+                } else {
+                    baos.write(cipher.doFinal(src, singleLength * i, singleLength));
+                }
             }
 
+            return baos.toByteArray();
         } catch (Exception e) {
             e.printStackTrace();
         }
