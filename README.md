@@ -15,7 +15,7 @@ Java常用加密算法整理，包括des aes rsa md5 sha1 sm2 sm3 sm4。其他�
      */
     public static byte[] process(byte[] src, byte[] key, byte[] iv, int mode)
 ```
-1.密钥至少是8字节  
+1.密钥是8字节  
 2.向量必须是8字节  
 3.根据传入的mode决定加密或解密模式，下列各算法同  
 4.如果想传入传出的是字符串，可以用base64自行再封装一下，下列各算法同 
