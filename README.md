@@ -1,5 +1,5 @@
 # EncryptCollection
-Java常用加密算法整理，包括des aes rsa md5 sha1 sm2 sm3 sm4。其他未包括算法欢迎PR。
+Java常用加密算法整理，包括des aes rsa md5 sha1 sm2 sm3 sm4。如有问题欢迎issues，其他未包括算法欢迎PR。
 ## Des
 ### CBC
 ``` java
