@@ -8,8 +8,10 @@ public class AesUtil {
     private static final String AES_BASE = "AES";
     private static final String AES_CBC = "AES/CBC/PKCS5Padding";
 
-    // 16字节秘钥，也就是128位
+    // 16字节秘钥，也就是128位，也可以是24、32字节
     public static final byte DEFAULT_KEY[] = {1, 2, 3, 4, 5, 6, 7, 8, 8, 7, 6, 5, 4, 3, 2, 1};
+
+    // 向量必须是16字节
     public static final byte DEFAULT_IV[] = {1, 2, 3, 4, 5, 6, 7, 8, 8, 7, 6, 5, 4, 3, 2, 1};
 
     /**

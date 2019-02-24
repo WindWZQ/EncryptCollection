@@ -19,7 +19,7 @@ public class RsaUtil {
     private static final String RSA_MODULE = "RSA/NONE/PKCS1Padding";
 
     /**
-     * 产生密钥对
+     * 生成密钥对
      *
      * @param keyLength 密钥长度，小于1024长度的密钥已经被证实是不安全的，通常设置为1024或者2048，建议2048
      * @return 密钥对
@@ -38,9 +38,8 @@ public class RsaUtil {
     }
 
     /**
-     * 单次加密的源数据最大长度不能超过key的长度
-     * 比如key的长度是2048位，也就是256字节，src的长度也不能超过256-11=245字节
-     * 参考下面的分段加密方法
+     * 单次加密的源数据最大长度与密钥长度相关
+     * 比如key的长度是2048位，也就是256字节，则加密数据最大245字节，解密数据最大256字节
      *
      * @param src  源数据
      * @param key  公钥或者私钥
@@ -62,8 +61,7 @@ public class RsaUtil {
     }
 
     /**
-     * 分段加密方法
-     * 长度是2048位，也就是256字节，src的长度也不能超过256-11=245字节，只有加密需要-11，解密不需要
+     * 分段加密方法，自动拆分成合适长度的数据
      *
      * @param src       源数据
      * @param key       公钥或者私钥

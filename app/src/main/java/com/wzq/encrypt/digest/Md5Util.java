@@ -6,6 +6,8 @@ import java.security.MessageDigest;
 public class Md5Util {
 
     /**
+     * 计算md5
+     *
      * @param src 源数据
      * @return md5结果
      */

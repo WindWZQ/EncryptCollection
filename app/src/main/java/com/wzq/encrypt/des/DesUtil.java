@@ -1,9 +1,6 @@
 package com.wzq.encrypt.des;
 
-import java.security.NoSuchAlgorithmException;
-
 import javax.crypto.Cipher;
-import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
@@ -17,11 +14,11 @@ public class DesUtil {
     private static final String DES_CBC = "DES/CBC/PKCS7Padding";
     private static final String DES_EDE = "DESede/CBC/PKCS7Padding";
 
-    // 秘钥至少是8字节
+    // 秘钥必须是8字节
     public static final byte DEFAULT_KEY[] = {1, 2, 3, 4, 5, 6, 7, 8};
 
     // 向量必须是8字节
-    public static final byte DEFAULT_IV[] = {8, 7, 6, 5, 4, 3, 2, 1};
+    public static final byte DEFAULT_IV[] = {8, 7, 6, 5, 4, 3, 2, 1,0};
 
     // ede秘钥必须是16或24字节
     public static final byte DEFAULT_KEY_EDE[] = {1, 2, 3, 4, 5, 6, 7, 8, 8, 7, 6, 5, 4, 3, 2, 1, 1, 2, 3, 4, 5, 6, 7, 8};
@@ -58,6 +55,7 @@ public class DesUtil {
      *
      * @param src  源数据
      * @param key  秘钥
+     * @param iv 向量
      * @param mode 加密：Cipher.ENCRYPT_MODE
      *             解密：Cipher.DECRYPT_MODE
      * @return 加解密后的byte数组

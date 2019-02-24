@@ -6,8 +6,10 @@ import java.security.MessageDigest;
 public class Sha1Util {
 
     /**
+     * 计算sha1
+     *
      * @param src 源数据
-     * @return md5结果
+     * @return sha1结果
      */
     public static String encode(byte[] src) {
         try {
