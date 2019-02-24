@@ -68,7 +68,7 @@ Java常用加密算法整理，包括des aes rsa md5 sha1 sm2 sm3 sm4。其他�
 2.可以使用keyPair.getPublic().getEncoded()方法，并base64处理转成字符串形式的公私钥  
 3.私钥加密的只能公钥解密  
 4.公钥加密的只能私钥解密
-### 字符串实行的公钥、私钥转换成对象
+### 字符串的公钥、私钥转换成对象
 ``` java
     /**
      * 将字符串形式的私钥，转换为私钥对象
@@ -86,7 +86,7 @@ Java常用加密算法整理，包括des aes rsa md5 sha1 sm2 sm3 sm4。其他�
      */
     public static PublicKey key2PublicKey(String publicKeyStr)
 ```
-### 加解密
+### rsa加解密
 ``` java
     /**
      * 单次加密的源数据最大长度与密钥长度相关
@@ -103,7 +103,7 @@ Java常用加密算法整理，包括des aes rsa md5 sha1 sm2 sm3 sm4。其他�
 ```
 1.rsa单次可加解密的源数据长度和密钥长度相关。例如2048长度的密钥，单次可以加密245字节的数据或解密256字节的数据  
 2.如果需要处理超出长度的数据，可以使用下面的分段加密
-### 分段加解密
+### rsa分段加解密
 ``` java
     /**
      * 分段加密方法，自动拆分成合适长度的数据
