@@ -13,7 +13,6 @@ import com.wzq.encrypt.test.ui.AesFragment;
 import com.wzq.encrypt.test.ui.DesFragment;
 import com.wzq.encrypt.test.ui.MD5Fragment;
 import com.wzq.encrypt.test.ui.RsaFragment;
-import com.wzq.encrypt.test.ui.SmFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,14 +37,12 @@ public class MainActivity extends AppCompatActivity {
         fragmentList.add(new AesFragment());
         fragmentList.add(new RsaFragment());
         fragmentList.add(new MD5Fragment());
-        fragmentList.add(new SmFragment());
 
         List<String> titleList = new ArrayList<>();
         titleList.add("DES");
         titleList.add("AES");
         titleList.add("RSA");
         titleList.add("MD5");
-        titleList.add("SM");
 
         MyPagerAdapter myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager(), fragmentList, titleList);
         vpEncrypt.setAdapter(myPagerAdapter);

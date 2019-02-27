@@ -18,7 +18,7 @@ public class DesUtil {
     public static final byte DEFAULT_KEY[] = {1, 2, 3, 4, 5, 6, 7, 8};
 
     // 向量必须是8字节
-    public static final byte DEFAULT_IV[] = {8, 7, 6, 5, 4, 3, 2, 1,0};
+    public static final byte DEFAULT_IV[] = {8, 7, 6, 5, 4, 3, 2, 1};
 
     // ede秘钥必须是16或24字节
     public static final byte DEFAULT_KEY_EDE[] = {1, 2, 3, 4, 5, 6, 7, 8, 8, 7, 6, 5, 4, 3, 2, 1, 1, 2, 3, 4, 5, 6, 7, 8};
@@ -55,7 +55,7 @@ public class DesUtil {
      *
      * @param src  源数据
      * @param key  秘钥
-     * @param iv 向量
+     * @param iv   向量
      * @param mode 加密：Cipher.ENCRYPT_MODE
      *             解密：Cipher.DECRYPT_MODE
      * @return 加解密后的byte数组
