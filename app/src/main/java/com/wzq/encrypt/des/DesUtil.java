@@ -13,6 +13,7 @@ public class DesUtil {
 
     private static final String DES_CBC = "DES/CBC/PKCS7Padding";
     private static final String DES_EDE = "DESede/CBC/PKCS7Padding";
+    private static final String DES_EDE_ECB = "DESede/ECB/NoPadding";
 
     // 秘钥必须是8字节
     public static final byte DEFAULT_KEY[] = {1, 2, 3, 4, 5, 6, 7, 8};
@@ -20,7 +21,7 @@ public class DesUtil {
     // 向量必须是8字节
     public static final byte DEFAULT_IV[] = {8, 7, 6, 5, 4, 3, 2, 1};
 
-    // ede秘钥必须是16或24字节
+    // ede秘钥必须>=24字节
     public static final byte DEFAULT_KEY_EDE[] = {1, 2, 3, 4, 5, 6, 7, 8, 8, 7, 6, 5, 4, 3, 2, 1, 1, 2, 3, 4, 5, 6, 7, 8};
 
     /**
@@ -68,6 +69,22 @@ public class DesUtil {
             Cipher cipher = Cipher.getInstance(DES_EDE);
             IvParameterSpec ivSpec = new IvParameterSpec(iv);
             cipher.init(mode, secretKey, ivSpec);
+
+            result = cipher.doFinal(src);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    public static byte[] processEdeEcb(byte[] src, byte[] key, int mode) {
+        byte[] result = null;
+        try {
+            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(DES_EDE_BASE);
+            SecretKey secretKey = keyFactory.generateSecret(new DESedeKeySpec(key));
+            Cipher cipher = Cipher.getInstance(DES_EDE_ECB);
+            cipher.init(mode, secretKey);
 
             result = cipher.doFinal(src);
         } catch (Exception e) {
