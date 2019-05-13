@@ -34,7 +34,7 @@ Java常用加密算法整理，包括des aes rsa md5 sha1。如有问题欢迎is
      */
     public static byte[] processEde(byte[] src, byte[] key, byte[] iv, int mode)
 ```
-1.密钥必须是16或24字节  
+1.密钥必须大于24字节  
 2.向量必须是8字节
 ## Aes
 ### CBC AesUtil.java
